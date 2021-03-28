@@ -34,13 +34,13 @@ HUGO_PACKAGE=https://github.com/spf13/hugo/releases/download/v${TAG_NAME}/${FILE
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   echo "\n-----> Fetching Hugo ${HUGO_VERSION} binaries at ${HUGO_PACKAGE}"
-  curl $HUGO_PACKAGE -L -s -o $CACHE_DIR/$FILE_NAME | indent
+  curl https://github.com/gohugoio/hugo/releases/download/v0.82.0/hugo_extended_0.82.0_Linux-64bit.tar.gz -L -s -o $CACHE_DIR/hugo_extended_0.82.0_Linux-64bit.tar.gz | indent
 fi
 
 # Extract the binary in the working directory
 echo "\n-----> Extracting Hugo ${HUGO_VERSION} binaries to ${BUILD_DIR}"
 mkdir -p $CACHE_DIR/$RELEASE_NAME | indent
-tar -zxvf $CACHE_DIR/$FILE_NAME -C $CACHE_DIR | indent
+tar -zxvf $CACHE_DIR/hugo_extended_0.82.0_Linux-64bit.tar.gz -C $CACHE_DIR | indent
 mv $CACHE_DIR/hugo $BUILD_DIR/hugo | indent
 
 # Fetch a theme specified in the .hugotheme file
